@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class MyWindow extends JFrame {
 
+    private boolean virgin = true;
     private Thread thmin;
     private Thread thmax;
     private Thread thavg;
@@ -98,16 +99,21 @@ public class MyWindow extends JFrame {
         btn.setBounds(x,y,width,height);
         btn.setVisible(true);
         btn.addActionListener(l -> {
-            thmin = null;
-            thmax = null;
-            thavg = null;
-            arr=generateNums();
-            thmin = new FindMin(tmin,pmin,arr);
-            thmin.start();
-            thmax = new FindMax(tmax,pmax,arr);
-            thmax.start();
-            thavg = new FindAvg(tavg,pavg,arr);
-            thavg.start();
+            if(virgin || thmin != null && thmax != null && thavg != null){
+                if(virgin || !thmin.isAlive() && !thmax.isAlive() && !thavg.isAlive()){
+                    thmin = null;
+                    thmax = null;
+                    thavg = null;
+                    arr=generateNums();
+                    thmin = new FindMin(tmin,pmin,arr);
+                    thmin.start();
+                    thmax = new FindMax(tmax,pmax,arr);
+                    thmax.start();
+                    thavg = new FindAvg(tavg,pavg,arr);
+                    thavg.start();
+                    virgin = false;
+                }
+            }
         });
         return btn;
     }
