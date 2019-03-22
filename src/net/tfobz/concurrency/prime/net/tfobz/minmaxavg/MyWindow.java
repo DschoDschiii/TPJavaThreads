@@ -1,3 +1,5 @@
+package net.tfobz.concurrency.prime.net.tfobz.minmaxavg;
+
 import javax.swing.*;
 import java.awt.*;
 

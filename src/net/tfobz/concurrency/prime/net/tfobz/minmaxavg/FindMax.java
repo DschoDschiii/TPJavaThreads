@@ -1,12 +1,14 @@
+package net.tfobz.concurrency.prime.net.tfobz.minmaxavg;
+
 import javax.swing.*;
 
-public class FindMin extends Thread {
+public class FindMax extends Thread {
 
     private int[] arr;
     private JTextField tx;
     private JProgressBar pb;
 
-    public FindMin(JTextField tx, JProgressBar pb, int[] arr){
+    public FindMax(JTextField tx, JProgressBar pb, int[] arr){
         this.arr = arr;//new int[100000000];
         this.pb = pb;
         this.tx = tx;
@@ -15,13 +17,13 @@ public class FindMin extends Thread {
 
     @Override
     public synchronized void run() {
-        int min = Integer.MAX_VALUE;
+        int max = 0;
         int pbInt = 0;
         for(int i: arr){
             pb.setValue(++pbInt);
-            if(i<min){
+            if(i>max){
                 tx.setText(String.valueOf(i));
-                min=i;
+                max=i;
             }
         }
     }
