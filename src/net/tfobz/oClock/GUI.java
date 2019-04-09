@@ -18,6 +18,7 @@ public class GUI extends JFrame{
         setLayout(null);
         time = new JLabel();
         time.setBounds(6*ABST,ABST,5*WIDTH/6,2*HEIGTH/4);
+        time.setFont(new Font("Font",Font.BOLD,40));
         bstop = new JButton();
         bstop.setBounds(4*ABST,2*ABST+2*HEIGTH/4,(2*WIDTH/6)-ABST,HEIGTH/4);
         bstop.setText("Stop");
