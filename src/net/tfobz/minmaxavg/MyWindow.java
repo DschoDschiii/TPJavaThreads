@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class MyWindow extends JFrame {
 
-    private boolean virgin = true;
+    private boolean untouched = true;
     private Thread thmin;
     private Thread thmax;
     private Thread thavg;
@@ -101,8 +101,8 @@ public class MyWindow extends JFrame {
         btn.setBounds(x,y,width,height);
         btn.setVisible(true);
         btn.addActionListener(l -> {
-            if(virgin || thmin != null && thmax != null && thavg != null){
-                if(virgin || !thmin.isAlive() && !thmax.isAlive() && !thavg.isAlive()){
+            if(untouched || thmin != null && thmax != null && thavg != null){
+                if(untouched || !thmin.isAlive() && !thmax.isAlive() && !thavg.isAlive()){
                     thmin = null;
                     thmax = null;
                     thavg = null;
@@ -113,14 +113,12 @@ public class MyWindow extends JFrame {
                     thmax.start();
                     thavg = new FindAvg(tavg,pavg,arr);
                     thavg.start();
-                    virgin = false;
+                    untouched = false;
                 }
             }
         });
         return btn;
     }
-
-
 
     public static void main(String[] args){
         MyWindow w = new MyWindow("MinMaxAvgSearch");
