@@ -24,13 +24,13 @@ class Lager {
 		return java.text.DateFormat.getTimeInstance().format(new java.util.Date());
 	}
 	
-	void ergaenze(int add) {
+	synchronized void ergaenze(int add) {
 		bilanz += add;
 		anz++;
 		System.out.println("Nr. " + anz + ":\t" + Thread.currentThread().getName() + " ergänzt\t" + add + "\tum " + formZeit() + " Uhr. Stand: " + bilanz);
 	}
 	
-	void liefere(int sub) {
+	synchronized void liefere(int sub) {
 		bilanz -= sub;
 		anz++;
 		System.out.println("Nr. " + anz + ":\t" + Thread.currentThread().getName() + " entnimmt\t" + sub + "\tum " + formZeit() + " Uhr. Stand: " + bilanz);
