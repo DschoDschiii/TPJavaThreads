@@ -8,7 +8,7 @@ public class PrimeFactorToolMain
 	public static void main(String[] args) {
 		PrimeFactorTool pt = new ThreadPrimeFactorTool();
 
-		((ThreadPrimeFactorTool) pt).run();
+		//((ThreadPrimeFactorTool) pt).run();
 
 		for (int num = MIN_NUM; num <= MAX_NUM; num++)
 			pt.printPrimeFactors(num);

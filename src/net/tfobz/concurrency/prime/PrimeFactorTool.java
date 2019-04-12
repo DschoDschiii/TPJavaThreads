@@ -1,14 +1,14 @@
 package net.tfobz.concurrency.prime;
 
 /**
- * Tool that generates the prime factors of a given number and put them on the
+ * Tool that generates the prime factors of a given number and puts them on the
  * standard output. Also the number of finished method calls will be shown
  * at the standard output
  * @author Michael Wild
  */
 public class PrimeFactorTool
 {
-	private int finishedMethodCalls = 0;
+	private static int finishedMethodCalls = 0;
 	
 	public void printPrimeFactors(int num) {
 		int whichprime = 1;
