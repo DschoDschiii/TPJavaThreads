@@ -8,7 +8,8 @@ public class RssThread extends Thread {
     private URL url;
     private JTextArea textarea;
 
-    public RssThread(URL url){
+    public RssThread(JTextArea textarea, URL url){
+        this.textarea = textarea;
         this.url = url;
     }
 
