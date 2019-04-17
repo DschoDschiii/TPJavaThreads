@@ -12,6 +12,8 @@ public class MainGUI extends JFrame {
     private JButton scheduleswitchbutton;
     private JButton updatebutton;
 
+    ScheduledExecutorService executor;
+
     public MainGUI() {
         super("Simple RSSReader");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -37,7 +39,7 @@ public class MainGUI extends JFrame {
                 String urlstring = JOptionPane.showInputDialog("Neue URL eingeben");
                 if(urlstring != null){
                     URL url = new URL(urlstring);
-                    //TODO
+                    executor.addURL(url);
                 }
             } catch (MalformedURLException ex) {
                 JOptionPane.showMessageDialog(this, "Keine gültige URL!");
@@ -50,8 +52,8 @@ public class MainGUI extends JFrame {
         scheduleswitchbutton.setMnemonic('e');
         scheduleswitchbutton.setFont(font);
         scheduleswitchbutton.addActionListener(e -> {
-            //TODO
-            if(scheduleswitchbutton.getText().equals("Activate Scheduler"))
+            executor.switchActive();
+            if(executor.isActive())
                 scheduleswitchbutton.setText("Deavtivate Scheduler");
             else
                 scheduleswitchbutton.setText("Activate Scheduler");
@@ -62,10 +64,11 @@ public class MainGUI extends JFrame {
         updatebutton.setBounds(860, 525, 100, 35);
         updatebutton.setMnemonic('a');
         updatebutton.setFont(font);
-        updatebutton.addActionListener(e -> {
-            //TODO
-        });
+        updatebutton.addActionListener(e -> executor.updateRssFeeds());
         cpane.add(updatebutton);
+
+        executor = new ScheduledExecutorService(rssarea, null, 10000);
+        executor.start();
 
         setVisible(true);
     }

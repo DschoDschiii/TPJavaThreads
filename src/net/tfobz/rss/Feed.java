@@ -8,14 +8,14 @@ import java.util.List;
  */
 public class Feed {
 
-    final String title;
-    final String link;
-    final String description;
-    final String language;
-    final String copyright;
-    final String pubDate;
+    private final String title;
+    private final String link;
+    private final String description;
+    private final String language;
+    private final String copyright;
+    private final String pubDate;
 
-    final List<FeedMessage> entries = new ArrayList<FeedMessage>();
+    private final List<FeedMessage> entries = new ArrayList<>();
 
     public Feed(String title, String link, String description, String language,
                 String copyright, String pubDate) {

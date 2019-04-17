@@ -11,25 +11,25 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class RSSFeedParser {
-    static final String TITLE = "title";
-    static final String DESCRIPTION = "description";
-    static final String CHANNEL = "channel";
-    static final String LANGUAGE = "language";
-    static final String COPYRIGHT = "copyright";
-    static final String LINK = "link";
-    static final String AUTHOR = "author";
-    static final String ITEM = "item";
-    static final String PUB_DATE = "pubDate";
-    static final String GUID = "guid";
+    private static final String TITLE = "title";
+    private static final String DESCRIPTION = "description";
+    private static final String CHANNEL = "channel";
+    private static final String LANGUAGE = "language";
+    private static final String COPYRIGHT = "copyright";
+    private static final String LINK = "link";
+    private static final String AUTHOR = "author";
+    private static final String ITEM = "item";
+    private static final String PUB_DATE = "pubDate";
+    private static final String GUID = "guid";
 
     final URL url;
 
-    public RSSFeedParser(String feedUrl) {
-        try {
-            this.url = new URL(feedUrl);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
+    public RSSFeedParser(URL url){
+        this.url = url;
+    }
+
+    public RSSFeedParser(String feedUrl) throws MalformedURLException{
+        this(new URL(feedUrl));
     }
 
     public Feed readFeed() {
@@ -92,7 +92,7 @@ public class RSSFeedParser {
                             break;
                     }
                 } else if (event.isEndElement()) {
-                    if (event.asEndElement().getName().getLocalPart() == (ITEM)) {
+                    if (event.asEndElement().getName().getLocalPart().equals(ITEM)) {
                         FeedMessage message = new FeedMessage();
                         message.setAuthor(author);
                         message.setDescription(description);

@@ -1,6 +1,7 @@
 package net.tfobz.rss;
 
 import javax.swing.*;
+import java.awt.*;
 import java.net.URL;
 
 public class RssThread extends Thread {
@@ -15,6 +16,10 @@ public class RssThread extends Thread {
 
     @Override
     public void run() {
-        super.run();
+        RSSFeedParser parser = new RSSFeedParser(url);
+        Feed f = parser.readFeed();
+        for(FeedMessage message: f.getMessages()){
+            EventQueue.invokeLater(()->textarea.append(message.getTitle()+":  "+message.getDescription()+"\n"));
+        }
     }
 }
