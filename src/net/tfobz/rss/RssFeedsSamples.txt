@@ -1,0 +1,2 @@
+//https://newsfeed.zeit.de/index
+//https://www.spiegel.de/schlagzeilen/tops/index.rss
