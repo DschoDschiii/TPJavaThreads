@@ -6,7 +6,7 @@ import java.net.SocketException;
 
 public class ChatClientThread extends Thread
 {
-	private BufferedReader in = null;
+	private BufferedReader in;
 	
 	public ChatClientThread(BufferedReader in) {
 		this.in = in;

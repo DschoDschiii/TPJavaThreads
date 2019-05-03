@@ -8,9 +8,9 @@ import java.net.Socket;
 
 public class ChatServerThread extends Thread
 {
-	private Socket client = null;
-	private BufferedReader in = null;
-	private PrintStream out = null;
+	private Socket client;
+	private BufferedReader in;
+	private PrintStream out;
 	
 	public ChatServerThread(Socket client) throws IOException {
 		this.client = client;
@@ -46,7 +46,7 @@ public class ChatServerThread extends Thread
 			if (out != null)
 				ChatServer.outputStreams.remove(out);
 		} finally {
-			try { client.close(); } catch (Exception e1) { ; }
+			try { client.close(); } catch (Exception ignored) {}
 		}
 	}
 }

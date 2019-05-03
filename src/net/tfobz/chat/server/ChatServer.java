@@ -10,13 +10,10 @@ public class ChatServer
 {
 	public static final int PORT = 65535;
 	
-	protected static ArrayList<PrintStream> outputStreams =
-		new ArrayList();
+	protected static ArrayList<PrintStream> outputStreams = new ArrayList<>();
 	
 	public static void main(String[] args) {
-		ServerSocket server = null;
-		try {
-			server = new ServerSocket(PORT);
+		try(ServerSocket server = new ServerSocket(PORT);) {
 			System.out.println("Chat server started");
 			while (true) {
 				Socket client = server.accept();
@@ -28,8 +25,6 @@ public class ChatServer
 			}
 		} catch (IOException e) {
 			System.out.println(e.getClass().getName() + ": " + e.getMessage());
-		} finally {
-			try { server.close(); } catch (Exception e1) { ; }
 		}
 	}
 }
