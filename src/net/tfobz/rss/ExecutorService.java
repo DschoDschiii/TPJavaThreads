@@ -4,20 +4,17 @@ import javax.swing.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ExecutorService extends Thread {
 
     private JTextArea area;
-    List<URL> urls;
+    private List<URL> urls;
 
 
     public ExecutorService(JTextArea area, List<URL> urls) {
         this.area = area;
-        if (urls == null) {
-            this.urls = new ArrayList<>();
-        } else {
-            this.urls = urls;
-        }
+        this.urls = Objects.requireNonNullElseGet(urls, ArrayList::new);
 
     }
 
