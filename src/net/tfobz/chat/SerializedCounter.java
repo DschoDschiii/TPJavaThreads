@@ -37,7 +37,7 @@ public class SerializedCounter {
      */
     private synchronized void saveCounter(int value) {
         String path = System.getProperty("user.dir") + "\\" + getClass().getSimpleName() + ".obj";
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(path))){
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(path))) {
             out.writeObject(value);
         } catch (IOException e) {
             System.out.println(e.getClass() + ": " + e.getMessage());
@@ -54,7 +54,7 @@ public class SerializedCounter {
         int ret = -1;
         String path = System.getProperty("user.dir") + "\\" + getClass().getSimpleName() + ".obj";
 
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(path));){
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(path));) {
             ret = (Integer) in.readObject();
         } catch (FileNotFoundException e) {
             // do nothing
